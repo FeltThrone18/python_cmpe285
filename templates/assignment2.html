@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Stock Calculator!</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main copy 11.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    </head>
+    <body>
+        
+        <!-- Header -->
+        <section id="header">
+            <header class="major">
+                <h1>Stock Calculator</h1>
+            </header>
+            <div class="container">
+                <ul class="actions">
+                </ul>
+            </div>
+        </section>
+        
+       
+<!-- Footer -->
+<section id="footer">
+    <div class="container">
+        <header class="major">
+            <h2></h2>
+        </header>
+        <form method="post" action="#">
+            <div class="row uniform">
+                <div class="6u 12u$(xsmall)"><input type="text" name="symbol" id="symbol" placeholder="Stock Symbol" /></div>
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input type="submit" value="Calculate" class="special" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        {%if stock_data%}
+        <p>
+        <b><h4 style="color: black;">Current Stats For {{stock_data['name']}}</h4></b>
+        <font color="grey">
+            <b>{{stock_data['time']}}</b><br/><br/>
+            {{stock_data['name']}} ({{stock_data['symbol']}})<br/><br/>
+            {{stock_data['current']}} {{stock_data['currency']}}
+            {%if '-' in stock_data['change_by_vol']%}
+            <font color="red">
+                {%else%}
+                <font color="green">
+                    {%endif%}
+                    {{stock_data['change_by_vol']}} ({{stock_data['change_by_percent']}}%)</font><br/>
+            </font>
+            </p>
+            {%else%}
+            {%if error_data%}
+            <p><h2 style="color: orange">Please use a valid value from suggestions.</h2></p>
+            {%else%}
+            {%if api_call_exceeded%}
+            <p><h2 style="color: orange">Number of API Calls Exceeded the quota - 5 Req/Min Or 500 Req/Day</h2></p>
+            {%else%}
+            <p><h2 style="color: orange">Please select a stock to see updates.</h2></p>
+            {%endif%}
+            {%endif%}
+        </font>
+        {%endif%}
+    </div>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon alt fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+     
+    </footer>
+</section>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
+
